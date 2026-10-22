@@ -1,4 +1,4 @@
-Suoni di StellaTerm 0.5.1: per ogni azione il preset di Acu_Collection.json che la fa suonare, da ritoccare con Acu_Maker.
+Suoni di StellaTerm 0.5.2: per ogni azione il preset di Acu_Collection.json che la fa suonare, da ritoccare con Acu_Maker.
 StellaTerm si apre e il fuoco va nel campo di input. Preset: apertura.
 StellaTerm si chiude. Preset: meditimer_chiusura.
 Prima di chiudere, la domanda se terminare il programma che gira ancora nel terminale. Preset: mess_campana_a_martello.

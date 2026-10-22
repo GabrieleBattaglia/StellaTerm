@@ -37,7 +37,7 @@ from GBUtils import Acusticator, cartella_applicazione, percorso_risorsa
 from terminal_engine import MAX_BUFFER_LINES, StartError, TerminalEngine, clean_command_text
 
 APP_NAME = "StellaTerm"
-VERSIONE = "0.5.1"
+VERSIONE = "0.5.2"
 DATA_VERSIONE = "22 ottobre 2026"
 SETTINGS_FILENAME = "stellaterm_settings.json"
 MANUAL_FILENAME = "README.md"
@@ -674,7 +674,8 @@ class StellaTermFrame(wx.Frame):
         self.input_ctrl.SetDefaultStyle(self._input_style)
         last_in = self.input_ctrl.GetLastPosition()
         if last_in > 0:
-            self.input_ctrl.SetStyle(0, last_in, self._input_style)
+            with self._riscrittura():
+                self.input_ctrl.SetStyle(0, last_in, self._input_style)
         else:
             self._set_command_text("", cursor_at_end=True)
 
@@ -741,14 +742,38 @@ class StellaTermFrame(wx.Frame):
         prefix = self._get_input_prefix()
         new_val = prefix + cmd_text
         if self.input_ctrl.GetValue() != new_val:
-            self.input_ctrl.ChangeValue(new_val)
-            # Ri-applica lo stile sul testo di input (TE_RICH2)
-            self.input_ctrl.SetStyle(0, u16len(new_val), self._input_style)
+            with self._riscrittura():
+                self.input_ctrl.ChangeValue(new_val)
+                # Ri-applica lo stile sul testo di input (TE_RICH2)
+                self.input_ctrl.SetStyle(0, u16len(new_val), self._input_style)
         self._last_good_command = cmd_text
 
         target_pos = u16len(new_val) if cursor_at_end else u16len(prefix)
         self.input_ctrl.SetInsertionPoint(target_pos)
         self.input_ctrl.ShowPosition(target_pos)
+
+    @contextlib.contextmanager
+    def _riscrittura(self):
+        """
+        Le modifiche che StellaTerm fa da se' al campo di input non passano dalla
+        guardia del prefisso: il RichEdit manda EVT_TEXT anche per ChangeValue e per i
+        cambi di stile, e a volte a meta' riscrittura, con il prefisso vecchio e quello
+        nuovo insieme. La guardia l'avrebbe preso per un danno e lo avrebbe "riparato"
+        incollando il prompt dentro il comando.
+        """
+        prima = self._repairing_input
+        self._repairing_input = True
+        try:
+            yield
+        finally:
+            self._repairing_input = prima
+
+    def _write_into_command(self, testo: str):
+        """Scrive testo nel punto del cursore del campo di input, senza la guardia, e
+        ricorda il comando che ne risulta."""
+        with self._riscrittura():
+            self.input_ctrl.WriteText(testo)
+        self._last_good_command = self._get_command_text()
 
     def _prepare_input_for_writing(self):
         """
@@ -806,12 +831,9 @@ class StellaTermFrame(wx.Frame):
         else:
             repaired = recupera_comando(value, self.command_counter, self._last_good_command)
         repaired = repaired.replace("\r\n", " ").replace("\n", " ").replace("\r", " ")
-        self._repairing_input = True
-        try:
+        with self._riscrittura():
             self._clear_inline_suggestion_state()
             self._set_command_text(repaired, cursor_at_end=True)
-        finally:
-            self._repairing_input = False
 
     def _vai_all_input(self, suono: bool = True):
         """Porta il fuoco nel campo di input, con il cursore in fondo al comando."""
@@ -963,7 +985,7 @@ class StellaTermFrame(wx.Frame):
             # La coda di un suggerimento non accettato non diventa comando
             self._discard_inline_suggestion()
             self._vai_all_input()
-            self.input_ctrl.WriteText(ch)
+            self._write_into_command(ch)
             wx.CallAfter(self._update_inline_autocomplete_from_typing)
             return
 
@@ -997,7 +1019,7 @@ class StellaTermFrame(wx.Frame):
         if text:
             clean = clean_command_text(text.replace("\r\n", " ").replace("\n", " ").replace("\r", " "))
             self._prepare_input_for_writing()
-            self.input_ctrl.WriteText(clean)
+            self._write_into_command(clean)
             self._clear_inline_suggestion_state()
 
     def _on_input_paste_event(self, event):
@@ -1295,14 +1317,11 @@ class StellaTermFrame(wx.Frame):
         # Sostituisce solo la parte dalla fine del testo digitato in poi
         current_full = self.input_ctrl.GetValue()
         expected_head = prefix + typed
-        self._repairing_input = True
-        try:
+        with self._riscrittura():
             if not current_full.startswith(expected_head):
                 self._set_command_text(typed + suffix, cursor_at_end=False)
             else:
                 self.input_ctrl.Replace(start_sel, self.input_ctrl.GetLastPosition(), suffix)
-        finally:
-            self._repairing_input = False
 
         self.input_ctrl.SetSelection(start_sel, end_sel)
 

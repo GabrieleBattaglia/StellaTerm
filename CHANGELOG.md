@@ -1,5 +1,9 @@
 # Cronologia di StellaTerm
 
+## 0.5.2, 22 ottobre 2026
+
+- Il prompt non si accoda piu' al comando nel campo di input, e dopo Invio il fuoco torna a passare all'output, sull'inizio della risposta. Il RichEdit manda l'evento di testo modificato anche quando e' StellaTerm a riscrivere il campo, e a volte a meta' riscrittura, con il prefisso due volte: la guardia del prefisso lo prendeva per un danno e lo "riparava" mettendo il prompt dentro il comando, che cosi' non era piu' vuoto e faceva credere che si stesse scrivendo. Ora la guardia tace durante tutte le riscritture fatte dal programma. L'ha trovato Gabriele al primo uso vero.
+
 ## 0.5.1, 22 ottobre 2026
 
 - All'avvio non compare piu' l'errore AttributeError su _input_style: cambiare carattere e colori al campo di input faceva scattare la guardia del prefisso prima che il campo fosse pronto.

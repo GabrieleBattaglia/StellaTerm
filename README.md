@@ -2,7 +2,7 @@
 
 StellaTerm è un terminale accessibile per Windows, scritto in wxPython e pensato per chi lavora con un lettore di schermo, NVDA o JAWS, e con un display braille. Dentro gira il Prompt dei comandi vero, cmd.exe, attraverso la pseudo console di Windows: tutto ciò che funziona in cmd funziona anche qui, compresi PowerShell, Python, IPython e ssh lanciati da lì.
 
-Versione 0.5.1 del 22 ottobre 2026. Autori: Gabriele Battaglia (IZ4APU), Stella (Gemini 4 Argon) e ClaudIA (Claude Opus 5.5, UltraCode). Il programma è software libero, distribuito con la licenza GNU GPL versione 3.
+Versione 0.5.2 del 22 ottobre 2026. Autori: Gabriele Battaglia (IZ4APU), Stella (Gemini 4 Argon) e ClaudIA (Claude Opus 5.5, UltraCode). Il programma è software libero, distribuito con la licenza GNU GPL versione 3.
 
 ## 1. Che cosa serve
 
