@@ -1,5 +1,9 @@
 # Cronologia di StellaTerm
 
+## 0.5.1, 22 ottobre 2026
+
+- All'avvio non compare piu' l'errore AttributeError su _input_style: cambiare carattere e colori al campo di input faceva scattare la guardia del prefisso prima che il campo fosse pronto.
+
 ## 0.5.0, 22 ottobre 2026
 
 Prima versione nel repository proprio. StellaTerm, nato con Stella dentro la cartella Stuff fra il 20 e il 22 ottobre 2026 e arrivato lì a dichiararsi 2.0.0, riparte da qui con la 0.5.0, dopo una revisione completa del codice. Licenza GNU GPL 3.

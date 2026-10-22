@@ -37,7 +37,7 @@ from GBUtils import Acusticator, cartella_applicazione, percorso_risorsa
 from terminal_engine import MAX_BUFFER_LINES, StartError, TerminalEngine, clean_command_text
 
 APP_NAME = "StellaTerm"
-VERSIONE = "0.5.0"
+VERSIONE = "0.5.1"
 DATA_VERSIONE = "22 ottobre 2026"
 SETTINGS_FILENAME = "stellaterm_settings.json"
 MANUAL_FILENAME = "README.md"
@@ -543,7 +543,10 @@ class StellaTermFrame(wx.Frame):
         self._active_suggestions: list[str] = []
         self._active_suggestion_idx: int = 0
         self._closing: bool = False
-        self._repairing_input: bool = False
+        # Vero mentre StellaTerm riscrive il campo da se': la guardia del prefisso tace.
+        # Lo e' anche durante la costruzione, perche' cambiare carattere e colori al
+        # campo fa partire EVT_TEXT prima che il prefisso ci sia
+        self._repairing_input: bool = True
         self._last_good_command: str = ""
         self._sync_queued: bool = False
         self._error_reported: bool = False
@@ -555,6 +558,7 @@ class StellaTermFrame(wx.Frame):
         self._build_ui()
         self.apply_visual_settings()
         self._mirror = OutputMirror(self.output_ctrl)
+        self._repairing_input = False
 
         # L'app deve partire sempre massimizzata: wx lo ricorda fino a Show
         self.Maximize(True)
@@ -663,10 +667,10 @@ class StellaTermFrame(wx.Frame):
 
         # Applica a input_ctrl (incluso il testo già presente in TE_RICH2); lo stile
         # resta in self._input_style per le riscritture del campo
+        self._input_style = wx.TextAttr(in_fg, in_bg, font_in)
         self.input_ctrl.SetFont(font_in)
         self.input_ctrl.SetBackgroundColour(in_bg)
         self.input_ctrl.SetForegroundColour(in_fg)
-        self._input_style = wx.TextAttr(in_fg, in_bg, font_in)
         self.input_ctrl.SetDefaultStyle(self._input_style)
         last_in = self.input_ctrl.GetLastPosition()
         if last_in > 0:

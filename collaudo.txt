@@ -1,4 +1,4 @@
-Collaudo di StellaTerm 0.5.0: le prove con NVDA e con le orecchie, che le prove automatiche non possono fare.
+Collaudo di StellaTerm 0.5.1: le prove con NVDA e con le orecchie, che le prove automatiche non possono fare.
 Prima: StellaTerm avviato con python stellaterm.py dalla cartella del progetto, con NVDA attivo e il volume degli effetti udibile.
 Passo 1: avvia StellaTerm.
 Domanda 1: il fuoco arriva subito nel campo di input, NVDA legge Area di input, e il suono di avvio parte poco dopo senza che la finestra resti ferma?
