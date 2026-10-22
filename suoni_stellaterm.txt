@@ -1,0 +1,29 @@
+Suoni di StellaTerm 0.5.0: per ogni azione il preset di Acu_Collection.json che la fa suonare, da ritoccare con Acu_Maker.
+StellaTerm si apre e il fuoco va nel campo di input. Preset: apertura.
+StellaTerm si chiude. Preset: meditimer_chiusura.
+Prima di chiudere, la domanda se terminare il programma che gira ancora nel terminale. Preset: mess_campana_a_martello.
+Invio manda un comando alla sessione. Preset: partenza.
+Un tasto premuto nell'area di output va al programma che lo aspetta. Preset: Digitazione.
+Il comando ha finito, o il programma aspetta una risposta, e il fuoco passa all'inizio della risposta. Preset: terminata.
+Il prompt torna dopo che il programma era gia' stato creduto in attesa: e' la fine vera, e il fuoco resta dov'e'. Preset: concluso.
+Il fuoco sale nell'area di output. Preset: spostamento_f7.
+Il fuoco scende nel campo di input, anche con un tasto scritto, Backspace o Ctrl+V dall'area di output. Preset: spostamento_f5.
+Ctrl+L, cls o clear svuotano l'area di output. Preset: eliminato.
+Esc svuota il comando che si stava scrivendo. Preset: spugna.
+Ctrl+C, Ctrl+Maiuscolo+C o Ctrl+Pausa mandano l'interruzione al programma. Preset: annullato.
+Ctrl+Freccia Su o Giu' oltre il primo o l'ultimo comando della cronologia. Preset: meteora_banda_al_limite.
+Ctrl+Freccia Destra o Sinistra quando c'e' un solo suggerimento. Preset: sys_tick_basso.
+Freccia Destra o Fine accettano il suggerimento proposto. Preset: validator.
+Il Tab completa il comando. Preset: conferma.
+Il Tab mostra piu' completamenti possibili. Preset: men_di_navigazione.
+Il Tab non trova completamenti. Preset: meditimer_tasto_sconosciuto.
+Il Tab non e' disponibile: un programma sta lavorando, o il prompt non ha completamento. Preset: mess_tasto_a_vuoto.
+Un comando @st cambia un'impostazione e la salva. Preset: convalida.
+@st save scrive il buffer di output in un file. Preset: written_ok.
+Un'impostazione o un buffer non si possono scrivere su disco. Preset: mess_salvataggio_non_riuscito.
+Un comando @st sconosciuto o scritto male. Preset: avviso_di_sistema.
+StellaTerm incontra un errore interno e lo annota nel registro degli errori. Preset: notifica.
+F1 o @st help mostrano il manuale. Preset: meditimer_manuale.
+@st set mostra i parametri, o un comando @st senza valore mostra quello attuale. Preset: mostra.
+@st auto mostra la tabella dei suggerimenti. Preset: lista.
+@st auto_reset cancella tutti i suggerimenti. Preset: cancellato.

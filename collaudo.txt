@@ -1,0 +1,39 @@
+Collaudo di StellaTerm 0.5.0: le prove con NVDA e con le orecchie, che le prove automatiche non possono fare.
+Prima: StellaTerm avviato con python stellaterm.py dalla cartella del progetto, con NVDA attivo e il volume degli effetti udibile.
+Passo 1: avvia StellaTerm.
+Domanda 1: il fuoco arriva subito nel campo di input, NVDA legge Area di input, e il suono di avvio parte poco dopo senza che la finestra resti ferma?
+Passo 2: esegui dir, poi scrivi di senza premere Invio.
+Domanda 2: NVDA legge la coda proposta, r, selezionata dopo di?
+Passo 3: premi Invio con la coda ancora proposta.
+Domanda 3: viene eseguito di, cioè solo ciò che hai scritto, e non dir?
+Passo 4: scrivi di, poi premi Freccia Destra.
+Domanda 4: suona l'accettazione e il campo diventa dir con il cursore in fondo?
+Passo 5: premi Ctrl+Freccia Su un paio di volte.
+Domanda 5: NVDA legge ogni comando richiamato una volta sola, o lo legge due volte o a metà? Scrivi cosa senti.
+Passo 6: esegui ping -n 4 127.0.0.1 e aspetta senza toccare niente.
+Domanda 6: il segnale di fine arriva una volta sola, alla fine, e non dopo la prima risposta?
+Passo 7: esegui di nuovo ping -n 4 127.0.0.1 e, mentre lavora, scrivi nel campo di input echo prova senza premere Invio.
+Domanda 7: alla fine del ping suona il segnale ma il fuoco resta nel campo con echo prova, e F6 ti porta sull'inizio della risposta?
+Passo 8: scrivi cd e uno spazio e l'inizio del nome di una cartella che c'è, poi premi Tab.
+Domanda 8: il campo si completa con il suono del completamento e NVDA legge il comando completato?
+Passo 9: lancia powershell, poi scrivi Get-Ch e premi Tab.
+Domanda 9: il primo Tab di PowerShell completa in Get-ChildItem, anche se ci mette un attimo? Poi esci con exit.
+Passo 10: lancia python, scrivi pri e premi Tab.
+Domanda 10: suona il segnale del Tab non disponibile e, scritto print(1) e premuto Invio, Python stampa 1 senza errori?
+Passo 11: sempre in Python, scrivi cls e premi Invio, poi esci con exit().
+Domanda 11: l'area di output si svuota senza nessun NameError?
+Passo 12: lancia un programma con i menu a tasto singolo, per esempio gabryscola, e scegli una voce premendo il tasto dall'area di output.
+Domanda 12: il tasto arriva al programma con il suono del tasto diretto, e NVDA comincia a leggere dalla prima riga della risposta?
+Passo 13: esegui dir /s C:\Windows\System32 e, mentre scorre, scendi con le frecce nell'area di output.
+Domanda 13: mentre arrivano righe nuove resti sulla riga che stai leggendo, senza che NVDA rilegga tutto?
+Passo 14: sempre durante il dir, premi Ctrl+C senza selezione.
+Domanda 14: suona l'interruzione e la lettura parte dalle righe prodotte dall'interruzione, non dall'inizio del dir?
+Passo 15: lancia python e, con il prompt >>> aperto, chiudi StellaTerm con Alt+F4.
+Domanda 15: compare la domanda che nomina python.exe, NVDA la legge, e Invio risponde No lasciando aperto StellaTerm?
+Passo 16: premi F1.
+Domanda 16: il manuale si legge riga per riga senza cancelletti, asterischi o apici inversi, con frasi intere?
+Passo 17: esegui @st save prova, poi @st save prova un'altra volta.
+Domanda 17: i due file stanno nella sottocartella salvataggi, con nomi diversi, e il secondo non ha sovrascritto il primo?
+Passo 18: ascolta i suoni usati nelle prove, aiutandoti con suoni_stellaterm.txt.
+Domanda 18: c'è un suono che non ti piace o che si confonde con un altro? Scrivi quale azione e quale preset.
+Esito:

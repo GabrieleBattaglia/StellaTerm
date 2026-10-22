@@ -1,0 +1,23 @@
+# Configurazione ruff di StellaTerm.
+# Autori: Gabriele Battaglia (IZ4APU) & ClaudIA (Claude Opus 5.5, UltraCode).
+line-length = 140
+
+[lint]
+select = ["E", "F", "W", "B", "SIM", "UP", "I", "C4", "RET", "BLE", "S", "RUF", "DTZ", "FURB", "PERF", "PIE"]
+ignore = [
+    # Righe lunghe: quasi tutti i messaggi all'utente stanno su una riga
+    # sola, e spezzarli renderebbe piu' difficile ritrovarli nel codice.
+    "E501",
+    # Lo stile di Gabriele ammette l'istruzione breve sulla stessa riga.
+    "E701",
+    "E702",
+    "E741",
+    # Date e orari sono di proposito quelli locali, senza fuso: il nome del
+    # buffer salvato con @st save porta l'ora dell'orologio di chi lo usa.
+    "DTZ005",
+]
+
+[lint.per-file-ignores]
+# Nelle prove l'assert e' lo strumento di pytest, non un controllo da
+# lasciare in produzione.
+"tests/*.py" = ["S101"]

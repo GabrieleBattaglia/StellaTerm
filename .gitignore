@@ -1,0 +1,16 @@
+# StellaTerm, cosa resta fuori da git.
+# Le impostazioni di chi lo usa: colori, caratteri, volume e la cronologia dei comandi, che dentro ha percorsi e nomi della propria macchina. Ogni macchina ha le sue, e chi scarica il programma parte dai valori predefiniti.
+stellaterm_settings.json
+# Le impostazioni illeggibili che StellaTerm mette da parte all'avvio, e il file temporaneo del salvataggio.
+stellaterm_settings.json.*
+# I buffer di output salvati con @st save, con il loro output del terminale, e il registro degli errori interni.
+salvataggi/
+stellaterm_buffer_*.txt
+stellaterm_errori.log
+# I prodotti della compilazione, l'archivio della release e le cache degli strumenti.
+__pycache__/
+build/
+dist/
+*.zip
+.pytest_cache/
+.ruff_cache/

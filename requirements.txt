@@ -1,0 +1,13 @@
+# StellaTerm, cosa serve per farlo funzionare.
+# wxPython disegna la finestra; pywinpty apre la pseudo console di Windows, ConPTY, in cui gira cmd.exe.
+wxPython>=4.2
+pywinpty>=2.0
+# GBUtils e' la libreria condivisa del parco software di Gabriele Battaglia: non sta su PyPI, si clona da GitHub e la sua cartella va nella PYTHONPATH.
+# https://github.com/GabrieleBattaglia/GBUtils
+# Acusticator, in GBUtils, suona gli effetti con numpy, scipy e sounddevice; GBsintesi parla con lo screen reader attraverso accessible_output2.
+numpy
+scipy
+sounddevice
+accessible-output2
+# Le prove.
+pytest
